@@ -1,0 +1,458 @@
+
+<!--
+          this site was made by akiraxd, inspired from damcraft.de (ServerSeeker Owner Site)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>made by jetta, inspired from akiraxd.</title>
+    <meta content="akiraxd" property="og:title" />
+    <meta content="Welcome to my website!!!" property="og:description" />
+    <meta name="google-site-verification" content="Xx00NQYNSAdli0xaZTRteMUkUn3OAvLpWgZriRIFgZ0" />
+    <meta content="assets/2b7c4b215643e4ddb2b511db3eddcac1.png" property="og:image" />
+    <meta content="#00BEFF" data-react-helmet="true" name="theme-color" />
+    <link rel="icon" href="assets/2b7c4b215643e4ddb2b511db3eddcac1.png" type="image/x-icon">
+    <style>
+        :root {
+        
+            --links: #0095cb;
+            --links-hover: #57a3da;
+            --selection: #00BEFF;
+            --highlight: #00BEFF;
+        
+        }
+
+        ::selection {
+            background-color: var(--selection);
+            color: #1f1f1f;
+        }
+        ::-moz-selection {
+            background-color: var(--selection);
+            color: #1f1f1f;
+        }
+
+        body {
+            background-color: #181818;
+            color: #ffffff;
+            font-size: 20px;
+            font-family: sans-serif;
+            scrollbar-gutter: stable;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+
+        }
+
+
+        a {
+            color: var(--links);
+        }
+        a:hover {
+            color: var(--links-hover);
+        }
+
+        #welcomeText {
+            color: var(--highlight);
+        }
+
+        .terminal {
+            background-color: black;
+            color: white;
+            font-size: medium;
+            font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+            border-radius: 5px;
+            border: 1px solid #ffffff;
+            
+            
+        }
+        .terminal .content {
+            padding: 0 10px 10px;
+        }
+
+        .terminal pre {
+            background-color: black;
+            color: white;
+            font-size: medium;
+            font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        }
+
+        .terminal ::-moz-selection {
+            background: #ffffff;
+            color: #1f1f1f;
+        }
+        .terminal ::selection {
+            background: #ffffff;
+            color: #1f1f1f;
+        }
+
+        #pgp {
+            display: none;
+            /* make double click to select everything work */
+            user-select: all;
+            /* Smaller font size */
+            font-size: 0.8em;
+        }
+
+        #showPgp:checked ~ #pgp {
+            display: block;
+        }
+
+        #blinking_cursor::after {
+            /* Blinking square */
+            animation: typing 1.5s steps(1, end) infinite;
+            content: "\a0";
+            background-color: #ffffff;
+        }
+
+        @keyframes typing {
+            50% {
+                visibility: hidden;
+            }
+        }
+
+        #showPgpLabel {
+            cursor: pointer;
+            position: relative;
+            padding-left: 30px;
+            user-select: none;
+        }
+
+        #showPgpLabel svg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: translateY(-50%);
+            fill: #ffffff;
+        }
+
+        #downloadPgp {
+            /* Align to the right side of the terminal */
+            float: right;
+            margin-top: -0.5em;
+            user-select: none;
+        }
+        #downloadPgp svg {
+            width: 24px;
+            height: 24px;
+            fill: #ffffff;
+            transform: translateY(25%);
+        }
+
+        /* Make the icon jump up and down if it isn't checked */
+        #showPgp:not(:checked) ~ #showPgpLabel #showPgpSvg {
+            animation: bounce 4s ease infinite;
+        }
+        @keyframes bounce {
+            90% { transform:translateY(0%); }
+            95% { transform:translateY(-30%); }
+            96% { transform:translateY(0%); }
+            97% { transform:translateY(-15%); }
+            98% { transform:translateY(0%); }
+            99% { transform:translateY(-7%); }
+            100% { transform:translateY(0); }
+        }
+
+        /* Make the SVG icon rotate when the checkbox is checked */
+        #showPgp:checked ~ #showPgpLabel #showPgpSvg {
+            transition: transform 0.3s;
+        }
+        #showPgp:checked ~ #showPgpLabel #showPgpSvg {
+            transform: rotate(180deg);
+        }
+        /* Make the SVG icon rotate back when the checkbox is unchecked */
+        #showPgp:not(:checked) ~ #showPgpLabel #showPgpSvg {
+            transition: transform 0.3s;
+        }
+        #showPgp:not(:checked) ~ #showPgpLabel #showPgpSvg {
+            transform: rotate(0deg);
+        }
+
+        #showPgp {
+            display: none;
+        }
+
+        .terminal pre {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .terminal ::-webkit-scrollbar {
+            width: 10px;
+        }
+        .terminal ::-webkit-scrollbar-track {
+            background: #1f1f1f;
+        }
+        .terminal ::-webkit-scrollbar-thumb {
+            background: #ffffff;
+        }
+
+        /* Make it so when you double click a command, it only selects the command and not the prefix */
+        .terminal .prefix {
+            user-select: none;
+        }
+
+        .terminal a {
+            color: #ffffff;
+        }
+
+        table {
+            font-size: 0.8em;
+            display: flex;
+        }
+
+        table td a {
+            color: var(--links) !important;
+        }
+        table td a:hover {
+            color: var(--links-hover) !important;
+        }
+
+        table td svg {
+            fill: #ffffff;
+            padding-right: 0.5em;
+            /* Align the SVG icons to the text */
+            vertical-align: middle;
+            /* Make the SVG icons smaller */
+            width: 19px;
+        }
+
+        #badges {
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            margin-top: 1em;
+            /* center the badges */
+            text-align: center;
+            padding: 10px;
+            /* Make the max width of the badges not exceed the terminal width */
+            max-width: 1110px;
+
+            @media (max-width: 1280px) {
+                /* Make the badges take up the entire width on mobile */
+                max-width: 80%;
+            }
+        }
+        #badges img {
+            display: inline-flex;
+        }
+
+        #alternativePgpCommand {
+            display: none;
+        }
+
+        #badges img:hover {
+            filter: brightness(1.1);
+            border: 1px solid #fff;
+            margin: -1px;
+        }
+
+        section {
+            margin-bottom: 1em;
+        }
+
+        .nomargin {
+            margin: 0;
+        }
+        .shortServername {
+            display: none;
+        }
+
+        @media (max-width: 734px) {
+            #welcome {
+                display: none;
+            }
+        }
+        @media (max-width: 1100px) {
+            #downloadPgpText {
+                display: none;
+            }
+        }
+        @media (max-width: 627px) {
+            /* Replace the curl command with the alternative command */
+            #curlPgpCommand {
+                display: none;
+            }
+            #alternativePgpCommand {
+                display: inline;
+            }
+        }
+        @media (max-width: 420px) {
+            .servername {
+                display: none;
+            }
+            .shortServername {
+                display: inline;
+            }
+        }
+
+        .topbar {
+            position: relative;
+            width: 100%;
+            height: 20px;
+            background-color: #1f1f1f;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .topbar svg {
+            width: 20px;
+            height: 20px;
+        }
+        .close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #ff5f57;
+            border-top-right-radius: 5px;
+        }
+        .maximize {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            height: 20px;
+            width: 20px;
+            background-color: #ffbd2e;
+        }
+        .minimize {
+            position: absolute;
+            top: 0;
+            right: 40px;
+            height: 20px;
+            width: 20px;
+            background-color: #28ca41;
+        }
+
+        /* Terminal styled input box */
+        #inputThingy input[type="text"], #inputThingy input[type="text"]:focus {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            display: inline;
+            width: calc(100% - 40ch);
+        }
+        #inputThingy form {
+            margin: 0 0 0 -2px;
+            padding: 0;
+            display: inline;
+        }
+        #discordInv {
+            color: var(--links);
+        }
+        #discord_status iframe {
+            border: none;
+            padding: 0;
+            height: 30px;
+            align-self: center;
+            display: inline;
+            position: absolute;
+            margin: 0 0 0 10px;
+            width: 11ch;
+        }
+        #discord_status {
+            display: inline;
+            position: relative;
+        }
+        #status1 {
+            z-index: 1;
+        }
+        #status2 {
+            z-index: 2;
+        }
+        #that_one_linebreak {
+            display: inline;
+        }
+        @media (max-width: 940px) {
+            #that_one_linebreak {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="terminal">
+       
+        <div class="content">
+            <section id="welcome">
+<pre id="welcomeText">
+
+   _      _   _        
+  (_)    | | | |       
+   _  ___| |_| |_ __ _ 
+  | |/ _ \ __| __/ _` |
+  | |  __/ |_| || (_| |
+  | |\___|\__|\__\__,_|
+ _/ |                  
+|__/    
+  
+</pre>
+            </section>
+            <section id="about_me">
+                <span class="prefix">
+                        <span style="color: #747f8d;">root@<span class="servername">akiraxd</span><span class="shortServername">dam</span></span>:~<span style="color: #747f8d;">$ </span></span>
+                <span class="command">cat about_me.txt</span>
+<pre>
+Hi! I'm jetta, a 14-year-old developer from Turkey!
+I am most notably known for <b>CraftRise utility mods</b>, but i dont make craftrise stuff anymore. 
+I am nonbinary and my pronouns are they/them.
+I speak both Turkish & English
+I am also known as <b>sky</b>
+The devices i use other then my pc: an Vivo And IPhone. 
+I <b>love</b> programming in java and c#.
+(Ok, that JavaScript part was a lie, this website is made entirely without JS. <span id="that_one_linebreak"><br> </span>And yes, idk about js lmao!)
+</pre>
+            </section>
+
+            <section id="socials">
+                <span class="prefix">
+                        <span style="color: #747f8d;">root@<span class="servername">akiraxd</span><span class="shortServername">dam</span></span>:~<span style="color: #747f8d;">$ </span></span>
+                    <span class="command">cat socials.txt</span>
+                <pre>
+Want to contact me? See all my contacts below!
+</pre>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"><path fill="#fff" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>
+                        </td>
+                        <td>@jetta.xd
+                            
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"><path fill="#fff" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>
+                        </td>
+                        <td>@akiraonlinee.
+                            
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section id="badges">
+
+        </section>
+        <section id="pgpSection" class="nomargin">
+            <span class="prefix">
+                <span style="color: #747f8d;">root@<span class="servername">akiraxd</span><span class="shortServername">akira</span></span>:~<span style="color: white;">$ sudo pacman -Sy neofetch</span></span>
+            
+                <svg id="showPgpSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+            </label>
+        </div>
+
+</body>
+</html>
